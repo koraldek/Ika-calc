@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+<title>Login</title>
+</head>
+
+<body>
+
+	<header th:replace="layout :: site-header"></header>
+
+	<h1>Register to Ika-Calc</h1>
+
+	<form method="post" th:object="${registerForm}">
+
+		<label for="username">username:</label>
+		<input type="text" th:field="*{username}" /> 
+		<span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username </span>
+
+		<label for="email">email:</label>
+		<input type="text" th:field="*{email}"/>
+		<span class="formError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Inwalid email</span>
+		
+		<label for="password">password:</label>
+		<input type="password" th:field="*{password}"/>
+		<span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Inwalid password</span>
+		
+            <label for="world_ID">World:</label>
+            <select th:field="*{world_ID}" th:remove="all-but-first">
+                <option th:each="world : ${worldsList}" th:value="${world.world_ID}" th:text="'(' + ${world.countryCode} + ') ' + ${world.name}">world name</option>
+                <option>Another world</option>
+                <option>Another world 2</option>
+            </select>
+            
+            <label for="registerToGame">Register to game:</label>
+            <input type="checkbox" name="registerToGame" th:field="*{registerToGame}" />
+            
+        <div>
+			<label for="autologin">Autologin:</label>
+			<input id="autologin" type="checkbox" name="autologin" th:field="*{autologin}" /> 
+		</div>
+
+		<div>
+			<input type="submit" value="Register" /> 
+			<a href="login.html" th:href="@{/login}">[Go to login]</a>
+		</div>
+	</form>
+
+	<footer th:replace="layout :: site-footer"></footer>
+
+</body>
+
+</html>

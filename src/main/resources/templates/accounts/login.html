@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+<title>Register</title>
+</head>
+
+<body>
+
+	<header th:replace="layout :: site-header"></header>
+
+	<h1>Sign-up to Ika-Calc</h1>
+
+	<form method="post" th:object="${loginForm}">
+		<div>
+			<label for="username">Username:</label>
+		</div>
+		<input id="username" type="text" name="username"
+			 /> <!-- <span class="formError"
+			th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid
+			username</span> -->
+
+		<div>
+			<label for="password" th:value="*{password}">Password:</label>
+		</div>
+		<input id="password" type="password" name="password"
+			 /> <!-- <span class="formError"
+			th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid
+			password</span> -->
+		
+		<div>
+			<label for="autologin">Autologin:</label>
+			<input id="autologin" type="checkbox" name="autologin" th:field="*{autologin}" /> 
+		</div>
+
+		<div>
+			<input type="submit" value="Login" /> 
+			<a href="register.html" th:href="@{/register}">[Go to Register]</a>
+		</div>
+	</form>
+
+	<footer th:replace="layout :: site-footer"></footer>
+
+</body>
+
+</html>
